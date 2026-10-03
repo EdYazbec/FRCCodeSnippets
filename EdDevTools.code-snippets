@@ -1,0 +1,341 @@
+{
+	"snHelp": {
+		"scope": "java",
+		"prefix": "snHelp",
+		"body": [
+			"// For SparkMax options, type snSparkMax",
+			"// For TalonFX  options, type snTalonFX"
+		],
+		"description": "Top Level Help Menu"
+	},
+	"snTalonFXHelp": {
+		"scope": "java",
+		"prefix": "snTalonFXHelp",
+		"body": [
+			"// To create        a TalonFX, type snTalonFX",
+			"// To configure     a TalonFX, type snTalonFXConfig,  and choose the option you need",
+			"// To control       a TalonFX, type snTalonFXControl, and choose the option you need",
+			"// To get info from a TalonFX, type snTalonFXInfo,    and choose the option you need"
+		],
+		"description": "TalonFX help"
+	},
+	"snTalonFXConfigHelp": {
+		"scope": "java",
+		"prefix": "snTalonFXConfigHelp",
+		"body": [
+			"// For basic      config type snTalonFXConfigBadlc",
+			"// For positional config type snTalonFXConfigPosition",
+			"// For velocity   config type snTalonFXConfigVelocity",
+			"// For follower   config type snTalonFXConfigFollower"
+		],
+		"description": "TalonFXConfig help"
+	},
+	"snTalonFXControlHelp": {
+		"scope": "java",
+		"prefix": "snTalonFXControlHelp",
+		"body": [
+			"// For basic      config type snTalonFXControlBasic",
+			"// For positional config type snTalonFXControlPosition",
+			"// For velocity   config type snTalonFXControlVelocity"
+		],
+		"description": "TalonFXControl help"
+	},
+	"SparkMaxBrushlessCreate": {
+		"scope": "java",
+		"prefix": "snSparkMaxBrushlessCreate",
+		"body": [
+			"private final SparkMax ${1:motorName} = new SparkMax(${0:CANID}, MotorType.kBrushless);",
+		],
+		"description": "Creates a SparkMax motor object for a brushless motor"
+	},
+	"SparkMaxBrushedCreate": {
+		"scope": "java",
+		"prefix": "snSparkMaxBrushedCreate",
+		"body": [
+			"private final SparkMax ${1:motorName} = new SparkMax(${0:CANID}, MotorType.kBrushed);",
+		],
+		"description": "Creates a SparkMax motor object for a brushed motor"
+	},
+	"SparkMaxConfigBasic": {
+		"scope": "java",
+		"prefix": "snSparkMaxConfigBasic",
+		"body": [
+			"// SparkMax Basic Configuration",
+			"",
+			"SparkMaxConfig config = new SparkMaxConfig();",
+			"",
+			"// current limits",
+			"config.smartCurrentLimit(${1:CurrentLimit});",
+			"",
+			"// Neutral mode",
+			"// TODO: Pick one and delete the other",
+			"config.idleMode(IdleMode.kCoast);",
+			"config.idleMode(IdleMode.kBrake);",
+			"",
+			"// Motor direction",
+			"// TODO: Test and select one, delete the other",
+			"config.inverted(false);",
+			"config.inverted(true);",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);",
+		],
+		"description": "Basic SparkMax motor configuration"
+	},
+	"SparkMaxConfigPose": {
+		"scope": "java",
+		"prefix": "snSparkMaxConfigPosition",
+		"body": [
+			"// SparkMax Basic Positonal Configuration",
+			"",
+			"// https://docs.revrobotics.com/brushless/spark-max/parameters",
+			"",
+			"SparkMaxConfig config = new SparkMaxConfig();",
+			"",
+			"// Current Limits",
+			"// TODO: Adjust as needed for your robot",
+			"config.smartCurrentLimit(${1:CurrentLimit});",
+			"",
+			"// Neutral mode",
+			"// TODO: Pick one and delete the other",
+			"config.idleMode(IdleMode.kBrake);",
+			"config.idleMode(IdleMode.kCoast);",
+			"",
+			"// Motor direction",
+			"config.inverted(true);",
+			"config.inverted(false);",
+			"",
+			"// PID",
+			"// TODO: Tune for your robot",
+			"config.closedLoop",
+			".p(0.0)",
+			".i(0.0)",
+			".d(0.0);",
+			"",
+			"// Soft limits",
+			"// TODO: Determine positional limits, set, and enable",
+			"config.softLimit.forwardSoftLimit(0);",
+			"config.softLimit.forwardSoftLimitEnabled(false);",
+			"config.softLimit.reverseSoftLimit(0);",
+			"config.softLimit.reverseSoftLimitEnabled(false);",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);",
+		],
+		"description": "SparkMax Basic Positional Control Configuration"
+	},
+	"SparkMaxConfigFollower": {
+		"scope": "java",
+		"prefix": "snSparkMaxConfigFollower",
+		"body": [
+			"// SparkMax Basic Follower Configuration",
+			"",
+			"SparkMaxConfig config = new SparkMaxConfig();",
+			"",
+			"// current limits",
+			"// TODO: Adjust as needed for your robot",
+			"config.smartCurrentLimit(${1:CurrentLimit});",
+			"",
+			"// Neutral mode",
+			"// TODO: Pick one and delete the other",
+			"config.idleMode(IdleMode.kBrake);",
+			"config.idleMode(IdleMode.kCoast);",
+			"",
+			"// Tell this motor to follow whatever the leader does",
+			"// TODO: Pick one and delete the other",
+			"config.follow(${2:MotorName}, false);",
+			"config.follow(${2:MotorName}, true);",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);"
+		],
+		"description": "SparkMax Basic Follower Configuration"
+	},
+	"TalonFXCreate": {
+		"scope": "java",
+		"prefix": "snTalonFXCreate",
+		"body": [
+			"private final TalonFX ${1:motorName} = new TalonFX(${0:CANID});",
+		],
+		"description": "Creates a TalonFX motor object"
+	},
+	"TalonFXConfigBasic": {
+		"scope": "java",
+		"prefix": "snTalonFXConfigBasic",
+		"body": [
+			"// TalonFX Basic Configuration",
+			"",
+			"TalonFXConfiguration config = new TalonFXConfiguration();",
+			"",
+			"// Current Limits",
+			"// TODO: Adjust as needed for your robot",
+			"config.CurrentLimits.SupplyCurrentLimit = ${1:SupplyCurrentLimit};",
+			"config.CurrentLimits.SupplyCurrentLimitEnable = true;",
+			"config.CurrentLimits.StatorCurrentLimit = ${2:StatorCurrentLimit};",
+			"config.CurrentLimits.StatorCurrentLimitEnable = true;",
+			"",
+			"// Neutral mode",
+			"// TODO: Pick one and delete the other",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Brake;",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Coast;",
+			"",
+			"// Motor direction",
+			"// TODO: Test and select one, delete the other",
+			"config.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;",
+			"config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.getConfigurator().apply(config);",
+		],
+		"description": "TalonFX Basic Configuration"
+	},
+	"TalonFXConfigPose": {
+		"scope": "java",
+		"prefix": "snTalonFXConfigPosition",
+		"body": [
+			"// TalonFX Basic Positonal Configuration",
+			"",
+			"TalonFXConfiguration config = new TalonFXConfiguration();",
+			"",
+			"// Current Limits",
+			"// TODO: Adjust as needed for your robot",
+			"config.CurrentLimits.SupplyCurrentLimit = ${1:SupplyCurrentLimit};",
+			"config.CurrentLimits.SupplyCurrentLimitEnable = true;",
+			"config.CurrentLimits.StatorCurrentLimit = ${2:StatorCurrentLimit};",
+			"config.CurrentLimits.StatorCurrentLimitEnable = true;",
+			"",
+			"// Neutral mode",
+			"// TODO: Pick one and delete the other",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Brake;",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Coast;",
+			"",
+			"// Motor direction",
+			"// TODO: Test and select one, delete the other.",
+			"config.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;",
+			"config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;",
+			"",
+			"// PID",
+			"// TODO: Tune for your intake",
+			"config.Slot0.kP = 0.0;",
+			"config.Slot0.kI = 0.0;",
+			"config.Slot0.kD = 0.0;",
+			"",
+			"// Soft limits",
+			"// TODO: Determine positional limits, set, and enable",
+			"config.SoftwareLimitSwitch.ForwardSoftLimitEnable = false;",
+			"config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 0;",
+			"config.SoftwareLimitSwitch.ReverseSoftLimitEnable = false;",
+			"config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = 0;",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.getConfigurator().apply(config);",
+		],
+		"description": "TalonFX Basic Positional Configuration"
+	},
+	"TalonFXConfigVel": {
+		"scope": "java",
+		"prefix": "snTalonFXConfigVelocity",
+		"body": [
+			"// TalonFX Basic Velocity Configuration",
+			"",
+			"// https://v6.docs.ctr-electronics.com/en/stable/docs/api-reference/device-specific/talonfx/basic-pid-control.html",
+			"TalonFXConfiguration config = new TalonFXConfiguration();",
+			"",
+			"// Current limts",
+			"config.CurrentLimits.SupplyCurrentLimit = ${1:SupplyCurrentLimit};",
+			"config.CurrentLimits.SupplyCurrentLimitEnable = true;",
+			"config.CurrentLimits.StatorCurrentLimit = ${2:StatorCurrentLimit};",
+			"config.CurrentLimits.StatorCurrentLimitEnable = true;",
+			"",
+			"// Neutral mode",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Coast;",
+			"",
+			"// Motor direction",
+			"// TODO: Pick one and delete the other",
+			"config.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;",
+			"config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;",
+			"",
+			"// PID velocity",
+			"// TODO: This will probably make it move, but tune for your robot",
+			"config.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction",
+			"config.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output",
+			"config.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output",
+			"config.Slot0.kI = 0; // no output for integrated error",
+			"config.Slot0.kD = 0; // no output for error derivative",
+			"",
+			"// apply the config to the motor",
+			"this.${0:motorName}.getConfigurator().apply(config);",
+		],
+		"description": "TalonFX Basic Velocity Configuration"
+	},
+	"TalonFXConfigFollower": {
+		"scope": "java",
+		"prefix": "snTalonFXConfigFollower",
+		"body": [		
+			"// TalonFX Basic Follower Configuration",
+			"",
+			"TalonFXConfiguration config = new TalonFXConfiguration();",
+			"",
+			"// Current Limits",
+			"// TODO: Adjust as needed for your robot",
+			"config.CurrentLimits.SupplyCurrentLimit = ${1:SupplyCurrentLimit};",
+			"config.CurrentLimits.SupplyCurrentLimitEnable = true;",
+			"config.CurrentLimits.StatorCurrentLimit = ${2:StatorCurrentLimit};",
+			"config.CurrentLimits.StatorCurrentLimitEnable = true;",
+			"",
+			"// Neutral mode",
+			"// TODO: Pick one and delete the other",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Brake;",
+			"config.MotorOutput.NeutralMode = NeutralModeValue.Coast;",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.getConfigurator().apply(config);",
+			"",
+			"// Tell this motor to follow whatever the leader does",
+			"// TODO: Pick one and delete the other",
+			"this.${0:motorName}.setControl(new Follower(this.${3:LeadermotorName}.getDeviceID(), MotorAlignmentValue.Opposed));",
+			"this.${0:motorName}.setControl(new Follower(this.${3:LeadermotorName}.getDeviceID(), MotorAlignmentValue.Aligned));",
+		],
+		"description": "TalonFX Basic Follower Configuration"
+	},
+	"TalonFXControlBasic": {
+		"scope": "java",
+		"prefix": "snTalonFXControlBasic",
+		"body": [
+			"this.${1:motorName}.set(${0:percent});"
+		],
+		"description": "TalonFX basic spinning"
+	},
+	"TalonFXControlPose": {
+		"scope": "java",
+		"prefix": "snTalonFXControlPose",
+		"body": [
+			"this.${1:motorName}.setControl(new PositionVoltage(${2:pose}).withSlot(${0:slotNumber}));"
+		],
+		"description": "TalonFX move to pose request"
+	},
+	"TalonFXControlVel": {
+		"scope": "java",
+		"prefix": "snTalonFXControlVel",
+		"body": [
+			"this.${1:motorName}.setControl(new VelocityVoltage(${2:targetSpeed}).withSlot(${0:slotNumber}));"
+		],
+		"description": "TalonFX move at speed request"
+	},
+	"TalonFXGetPose": {
+		"scope": "java",
+		"prefix": "snTalonFXGetPose",
+		"body": [
+			"this.${1:motorName}.getPosition()"
+		],
+		"description": "TalonFX get current position"
+	},
+	"TalonFXGetVel": {
+		"scope": "java",
+		"prefix": "snTalonFXGetVel",
+		"body": [
+			"this.${1:motorName}.getVelocity()"
+		],
+		"description": "TalonFX get current velocity"
+	},
+}
