@@ -43,6 +43,9 @@ Some snippets also feature tab stops. Pressing `Tab` will cycle the cursor throu
 | Prefix                      | Description                                           |
 | --------------------------- | ----------------------------------------------------- |
 | `snHelp`                    | Top-level help menu                                   |
+| `snSparkMaXHelp`            | SparkMaX help                                         |
+| `snSparkMaXConfigHelp`      | SparkMaX configuration help                           |
+| `snSparkMaXControlHelp`     | SparkMaX control help                                 |
 | `snTalonFXHelp`             | TalonFX help                                          |
 | `snTalonFXConfigHelp`       | TalonFX configuration help                            |
 | `snTalonFXControlHelp`      | TalonFX control help                                  |

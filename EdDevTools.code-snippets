@@ -8,6 +8,38 @@
 		],
 		"description": "Top Level Help Menu"
 	},
+	"snSparkMaxHelp": {
+		"scope": "java",
+		"prefix": "snSparkMaxHelp",
+		"body": [
+			"// To create        a SparkMax, type snSparkMax",
+			"// To configure     a SparkMax, type snSparkMaxConfig,  and choose the option you need",
+			"// To control       a SparkMax, type snSparkMaxControl, and choose the option you need",
+			"// To create a SparkMaxPIDController, type snSparkMaxPID",
+		],
+		"description": "SparkMax help"
+	},
+	"snSparkMaxConfigHelp": {
+		"scope": "java",
+		"prefix": "snSparkMaxConfigHelp",
+		"body": [
+			"// For basic      config type snSparkMaxConfigBadlc",
+			"// For positional config type snSparkMaxConfigPosition",
+			"// For velocity   config type snSparkMaxConfigVelocity",
+			"// For follower   config type snSparkMaxConfigFollower"
+		],
+		"description": "SparkMaxConfig help"
+	},
+	"snSparkMaxControlHelp": {
+		"scope": "java",
+		"prefix": "snSparkMaxControlHelp",
+		"body": [
+			"// For basic      config type snSparkMaxControlBasic",
+			"// For positional config type snSparkMaxControlPosition",
+			"// For velocity   config type snSparkMaxControlVelocity"
+		],
+		"description": "SparkMaxControl help"
+	},
 	"snTalonFXHelp": {
 		"scope": "java",
 		"prefix": "snTalonFXHelp",
