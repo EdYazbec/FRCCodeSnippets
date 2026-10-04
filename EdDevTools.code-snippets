@@ -62,7 +62,7 @@
 		"body": [
 			"private final SparkClosedLoopController ${1:motorName}PIDController = hoodMotor.getClosedLoopController();"
 		],
-		"description": "Creates a SparkMax PID controller"
+		"description": "Creates a SparkMax PID controller."
 	},
 	"SparkMaxConfigBasic": {
 		"scope": "java",
@@ -197,7 +197,7 @@
 		"prefix": "snSparkMaxControlBasic",
 		"body": [
 			"/**",
-			"* Sets the ${0:motorName}'s speed to the value",
+			"* Sets ${0:motorName}'s speed to the value",
 			"* @param speed, -1 to 1",
 			"*/",
 			"public void set${1:MotorName}Percent(double speed) {",
@@ -212,13 +212,13 @@
 		"prefix": "snSparkMaxControlPose",
 		"body": [
 			"/**",
-			"* Sets the ${1:motorName}'s position to the value",
-			"* @param pose, RMP or motor naitive units",
+			"* Sets ${1:motorName}'s position to the value",
+			"* @param position, RPM or motor naitive units",
 			"*/",
-			"public void set${2:MotorName}Pose(double pose) {",
+			"public void set${2:MotorName}Pose(double position) {",
 			"\t// Basic SparkMax Position Control",
 			"\t// TODO: use snSparkMaxPIDCreate to create the motot's PID controller, if you haven't already",
-			"\tthis.${0:MotorPIDControllerName}.setSetpoint(pose, ControlType.kPosition, ClosedLoopSlot.kSlot0);",
+			"\tthis.${0:MotorPIDControllerName}.setSetpoint(position, ControlType.kPosition, ClosedLoopSlot.kSlot0);",
 			"}"
 		],
 		"description": "SparkMax move to pose"
@@ -228,13 +228,13 @@
 		"prefix": "snSparkMaxControlVel",
 		"body": [
 			"/**",
-			"* Sets the ${1:motorName}'s velocity to the value",
+			"* Sets ${1:motorName}'s velocity to the value",
 			"* @param vel, RMP or motor naitive units",
 			"*/",
-			"public void set${2:MotorName}Vel(double vel) {",
-			"\t// Basic SparkMax Velocity",
+			"public void set${2:MotorName}Vel(double velocity) {",
+			"\t// Basic SparkMax Velocity Control",
 			"\t// TODO: use snSparkMaxPIDCreate to create the motot's PID controller, if you haven't already",
-			"\tthis.${0:MotorPIDControllerName}.setSetpoint(vel, ControlType.kVelocity, ClosedLoopSlot.kSlot0);",
+			"\tthis.${0:MotorPIDControllerName}.setSetpoint(velocity, ControlType.kVelocity, ClosedLoopSlot.kSlot0);",
 			"}"
 		],
 		"description": "SparkMax move at velocity"
@@ -390,7 +390,14 @@
 		"scope": "java",
 		"prefix": "snTalonFXControlBasic",
 		"body": [
-			"this.${1:motorName}.set(${0:percent});"
+			"/**",
+			"* Sets ${0:motorName}'s speed to the value",
+			"* @param speed, -1 to 1",
+			"*/",
+			"public void set${1:MotorName}Percent(double speed) {",
+			"\t// Basic TalonFX make it spin",
+			"\tthis.${0:motorName}.set(speed);",
+			"}"
 		],
 		"description": "TalonFX basic spinning"
 	},
@@ -398,15 +405,29 @@
 		"scope": "java",
 		"prefix": "snTalonFXControlPose",
 		"body": [
-			"this.${1:motorName}.setControl(new PositionVoltage(${2:pose}).withSlot(${0:slotNumber}));"
+			"/**",
+			"* Sets ${0:motorName}'s position to the value",
+			"* @param position, Rotations / second",
+			"*/",
+			"public void set${1:MotorName}Pose(double position) {",
+			"\t// Basic TalonFX Position Control",
+			"\tthis.${0:motorName}.setControl(new PositionVoltage(position));",
+			"}"
 		],
-		"description": "TalonFX move to position"
+		"description": "TalonFX move to pose"
 	},
 	"TalonFXControlVel": {
 		"scope": "java",
 		"prefix": "snTalonFXControlVel",
 		"body": [
-			"this.${1:motorName}.setControl(new VelocityVoltage(${2:targetSpeed}).withSlot(${0:slotNumber}));"
+			"/**",
+			"* Sets ${0:motorName}'s velocity to the value",
+			"* @param vel, Rotations / second",
+			"*/",
+			"public void set${2:MotorName}Vel(double velocity) {",
+			"\t// Basic TalonFX Velocity Control",
+			"\tthis.${0:motorName}.setControl(new VelocityVoltage(velocity));",
+			"}"
 		],
 		"description": "TalonFX move at velocity"
 	},
