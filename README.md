@@ -48,16 +48,21 @@ Some snippets also feature tab stops. Pressing `Tab` will cycle the cursor throu
 | `snTalonFXControlHelp`      | TalonFX control help                                  |
 | `snSparkMaxBrushlessCreate` | Creates a SparkMax motor object for a brushless motor |
 | `snSparkMaxBrushedCreate`   | Creates a SparkMax motor object for a brushed motor   |
+| `snSparkMaxPIDCreate`       | Creates a SparkMax PID controller                     |
 | `snSparkMaxConfigBasic`     | Basic SparkMax motor configuration                    |
 | `snSparkMaxConfigPose`      | SparkMax basic positional control configuration       |
+| `snSparkMaxConfigVel`       | SparkMax Basic Velocity Control Configuration         |
 | `snSparkMaxConfigFollower`  | SparkMax basic follower configuration                 |
+| `snSparkMaxControlBasic`    | SparkMax basic spinning                               |
+| `snSparkMaxControlPose`     | SparkMax move to pose                                 |
+| `snSparkMaxControlVel`      | SparkMax move at velocity                             |
 | `snTalonFXCreate`           | Creates a TalonFX motor object                        |
 | `snTalonFXConfigBasic`      | TalonFX basic configuration                           |
 | `snTalonFXConfigPosition`   | TalonFX basic positional configuration                |
 | `snTalonFXConfigVelocity`   | TalonFX basic velocity configuration                  |
 | `snTalonFXConfigFollower`   | TalonFX basic follower configuration                  |
 | `snTalonFXControlBasic`     | TalonFX basic spinning                                |
-| `snTalonFXControlPose`      | TalonFX move-to-position request                      |
-| `snTalonFXControlVel`       | TalonFX move-at-speed request                         |
+| `snTalonFXControlPose`      | TalonFX move to position                              |
+| `snTalonFXControlVel`       | TalonFX move at velocity                              |
 | `snTalonFXGetPose`          | Gets the current TalonFX position                     |
 | `snTalonFXGetVel`           | Gets the current TalonFX velocity                     |

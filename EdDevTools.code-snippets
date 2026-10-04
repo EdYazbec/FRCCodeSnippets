@@ -56,6 +56,14 @@
 		],
 		"description": "Creates a SparkMax motor object for a brushed motor"
 	},
+	"SparkMaxPIDCreate": {
+		"scope": "java",
+		"prefix": "snSparkMaxPIDCreate",
+		"body": [
+			"private final SparkClosedLoopController ${1:motorName}PIDController = hoodMotor.getClosedLoopController();"
+		],
+		"description": "Creates a SparkMax PID controller"
+	},
 	"SparkMaxConfigBasic": {
 		"scope": "java",
 		"prefix": "snSparkMaxConfigBasic",
@@ -84,7 +92,7 @@
 	},
 	"SparkMaxConfigPose": {
 		"scope": "java",
-		"prefix": "snSparkMaxConfigPosition",
+		"prefix": "snSparkMaxConfigPose",
 		"body": [
 			"// SparkMax Basic Positonal Configuration",
 			"",
@@ -124,6 +132,39 @@
 		],
 		"description": "SparkMax Basic Positional Control Configuration"
 	},
+	"SparkMaxConfigVel": {
+		"scope": "java",
+		"prefix": "snSparkMaxConfigVel",
+		"body": [
+			"// SparkMax Basic Positonal Configuration",
+			"",
+			"// https://docs.revrobotics.com/brushless/spark-max/parameters",
+			"",
+			"SparkMaxConfig config = new SparkMaxConfig();",
+			"",
+			"// Current Limits",
+			"// TODO: Adjust as needed for your robot",
+			"config.smartCurrentLimit(${1:CurrentLimit});",
+			"",
+			"// Neutral mode",
+			"config.idleMode(IdleMode.kCoast);",
+			"",
+			"// Motor direction",
+			"config.inverted(true);",
+			"config.inverted(false);",
+			"",
+			"// PID",
+			"// TODO: Tune for your robot",
+			"config.closedLoop",
+			".p(0.0)",
+			".i(0.0)",
+			".d(0.0);",
+			"",
+			"// apply the config",
+			"this.${0:motorName}.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);",
+		],
+		"description": "SparkMax Basic Velocity Control Configuration"
+	},
 	"SparkMaxConfigFollower": {
 		"scope": "java",
 		"prefix": "snSparkMaxConfigFollower",
@@ -143,13 +184,60 @@
 			"",
 			"// Tell this motor to follow whatever the leader does",
 			"// TODO: Pick one and delete the other",
-			"config.follow(${2:MotorName}, false);",
-			"config.follow(${2:MotorName}, true);",
+			"config.follow(${2:motorName}, false);",
+			"config.follow(${2:motorName}, true);",
 			"",
 			"// apply the config",
 			"this.${0:motorName}.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);"
 		],
 		"description": "SparkMax Basic Follower Configuration"
+	},
+	"SparkMaxControlBasic": {
+		"scope": "java",
+		"prefix": "snSparkMaxControlBasic",
+		"body": [
+			"/**",
+			"* Sets the ${0:motorName}'s speed to the value",
+			"* @param speed, -1 to 1",
+			"*/",
+			"public void set${1:MotorName}Percent(double speed) {",
+			"\t// Basic SparkMax make it spin",
+			"\tthis.${0:motorName}.set(speed);",
+			"}"
+		],
+		"description": "SparkMax basic spinning"
+	},
+	"SparkMaxControlPose": {
+		"scope": "java",
+		"prefix": "snSparkMaxControlPose",
+		"body": [
+			"/**",
+			"* Sets the ${1:motorName}'s position to the value",
+			"* @param pose, RMP or motor naitive units",
+			"*/",
+			"public void set${2:MotorName}Pose(double pose) {",
+			"\t// Basic SparkMax Position Control",
+			"\t// TODO: use snSparkMaxPIDCreate to create the motot's PID controller, if you haven't already",
+			"\tthis.${0:MotorPIDControllerName}.setSetpoint(pose, ControlType.kPosition, ClosedLoopSlot.kSlot0);",
+			"}"
+		],
+		"description": "SparkMax move to pose"
+	},
+	"SparkMaxControlVel": {
+		"scope": "java",
+		"prefix": "snSparkMaxControlVel",
+		"body": [
+			"/**",
+			"* Sets the ${1:motorName}'s velocity to the value",
+			"* @param vel, RMP or motor naitive units",
+			"*/",
+			"public void set${2:MotorName}Vel(double vel) {",
+			"\t// Basic SparkMax Velocity",
+			"\t// TODO: use snSparkMaxPIDCreate to create the motot's PID controller, if you haven't already",
+			"\tthis.${0:MotorPIDControllerName}.setSetpoint(vel, ControlType.kVelocity, ClosedLoopSlot.kSlot0);",
+			"}"
+		],
+		"description": "SparkMax move at velocity"
 	},
 	"TalonFXCreate": {
 		"scope": "java",
@@ -312,7 +400,7 @@
 		"body": [
 			"this.${1:motorName}.setControl(new PositionVoltage(${2:pose}).withSlot(${0:slotNumber}));"
 		],
-		"description": "TalonFX move to pose request"
+		"description": "TalonFX move to position"
 	},
 	"TalonFXControlVel": {
 		"scope": "java",
@@ -320,7 +408,7 @@
 		"body": [
 			"this.${1:motorName}.setControl(new VelocityVoltage(${2:targetSpeed}).withSlot(${0:slotNumber}));"
 		],
-		"description": "TalonFX move at speed request"
+		"description": "TalonFX move at velocity"
 	},
 	"TalonFXGetPose": {
 		"scope": "java",
